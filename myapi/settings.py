@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'product',
     'rest_framework',
     'TODO',
-    'TaskManager',
+    'TaskManager.apps.TaskmanagerConfig',
     'communitywall',
     'rest_framework_simplejwt',
     'djoser'
