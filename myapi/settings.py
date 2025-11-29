@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +42,10 @@ INSTALLED_APPS = [
     'product',
     'rest_framework',
     'TODO',
+    'TaskManager',
+    'communitywall',
+    'rest_framework_simplejwt',
+    'djoser'
 ]
 
 MIDDLEWARE = [
@@ -77,12 +83,8 @@ WSGI_APPLICATION = 'myapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'game_database_fxdk',
-        'HOST': 'dpg-d1kjhs95pdvs73aue670-a.oregon-postgres.render.com',
-        'USER': 'game_database_fxdk_user',
-        'PORT': '5432',
-        'PASSWORD': 'goQ5qyS3EtRGYz5cLXuU9PdL3TpAK5sR',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -127,3 +129,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication'],
+
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFREASH_TOKEN_LIFETIME': timedelta(days=1),
+}
